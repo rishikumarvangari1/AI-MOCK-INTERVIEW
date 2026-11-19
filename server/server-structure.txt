@@ -1,0 +1,29 @@
+Folder PATH listing for volume OS
+Volume serial number is 463C-15FA
+C:\USERS\RISHI\APPDATA\LOCAL\PACKAGES\MICROSOFT.DESKTOPAPPINSTALLER_8WEKYB3D8BBWE\LOCALSTATE\DIAGOUTPUTDIR\AI-MOCK-INTERVIEW\SERVER\SRC
+|   index.js
+|   
++---config
+|       db.js
+|       
++---controllers
+|       authController.js
+|       interviewcontroller.js
+|       resumeController.js
+|       
++---middleware
+|       authMiddleware.js
+|       
++---models
+|       Interview.js
+|       resume.js
+|       User.js
+|       
++---routes
+|       auth.js
+|       interviewRoutes.js
+|       resumeRoutes.js
+|       
+\---services
+        aiService.js
+        
