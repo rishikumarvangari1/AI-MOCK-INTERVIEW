@@ -376,7 +376,7 @@ export default function ResultsDashboard({
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-gray-900">
+    <main className="min-h-screen bg-slate-50 text-gray-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
       <div className="mx-auto max-w-6xl px-6 pb-16 pt-8">
         {/* HERO REPORT BANNER */}
         <section className="avoid-break relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-700 via-blue-700 to-cyan-700 px-8 py-9 shadow-lg">
@@ -424,7 +424,7 @@ export default function ResultsDashboard({
               <button
                 type="button"
                 onClick={onRetake}
-                className="rounded-full bg-white px-5 py-2.5 text-xs font-bold text-indigo-700 shadow-md hover:bg-indigo-50"
+                className="rounded-full bg-white px-5 py-2.5 text-xs font-bold text-indigo-700 shadow-md hover:bg-indigo-50 dark:bg-white dark:text-indigo-700 dark:hover:bg-slate-100"
               >
                 Retake Interview
               </button>

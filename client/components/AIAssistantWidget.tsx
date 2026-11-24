@@ -38,6 +38,53 @@ function formatMsgTime(iso?: string) {
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
+function FormattedMessage({ content }: { content: string }) {
+  const parts = content.split(/(```[\s\S]*?```)/g);
+
+  return (
+    <div className="space-y-1.5">
+      {parts.map((part, pIdx) => {
+        if (part.startsWith("```") && part.endsWith("```")) {
+          const codeLines = part.slice(3, -3).replace(/^[a-z]+\n/i, "");
+          return (
+            <pre
+              key={pIdx}
+              className="my-2 overflow-x-auto rounded-xl bg-slate-900 p-3 font-mono text-[11px] leading-relaxed text-slate-100 dark:bg-black/90"
+            >
+              <code>{codeLines}</code>
+            </pre>
+          );
+        }
+
+        return (
+          <span key={pIdx} className="whitespace-pre-wrap">
+            {part.split(/(\*\*.*?\*\*|`.*?`)/g).map((sub, sIdx) => {
+              if (sub.startsWith("**") && sub.endsWith("**")) {
+                return (
+                  <strong key={sIdx} className="font-bold text-gray-950 dark:text-white">
+                    {sub.slice(2, -2)}
+                  </strong>
+                );
+              }
+              if (sub.startsWith("`") && sub.endsWith("`")) {
+                return (
+                  <code
+                    key={sIdx}
+                    className="rounded bg-slate-100 px-1 py-0.5 font-mono text-[11px] font-semibold text-indigo-700 dark:bg-slate-800 dark:text-indigo-300"
+                  >
+                    {sub.slice(1, -1)}
+                  </code>
+                );
+              }
+              return sub;
+            })}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 function AIAssistantInner() {
   const { isLoggedIn } = useAuth();
   const pathname = usePathname() || "/";
@@ -149,7 +196,7 @@ function AIAssistantInner() {
       {open && (
         <section
           aria-label="AI Website Assistant"
-          className="mb-3 flex h-[510px] max-h-[82vh] w-[370px] max-w-[calc(100vw-2.5rem)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl"
+          className="mb-3 flex h-[510px] max-h-[82vh] w-[370px] max-w-[calc(100vw-2.5rem)] flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl transition-all dark:border-slate-800 dark:bg-slate-900"
         >
           {/* Header */}
           <div className="flex items-center justify-between bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 px-4 py-3 text-white">
@@ -166,7 +213,7 @@ function AIAssistantInner() {
                     ? "Interview Guard · Process help only"
                     : isLoggedIn
                       ? "Context-aware · Synced to your profile"
-                      : "Platform guide · Sign in for personal insights"}
+                      : "Platform guide · Ask any technical question"}
                 </p>
               </div>
             </div>
@@ -192,7 +239,7 @@ function AIAssistantInner() {
           </div>
 
           {isInterviewPage && (
-            <div className="border-b border-amber-200 bg-amber-50 px-3.5 py-2 text-[11px] font-medium text-amber-900">
+            <div className="border-b border-amber-200 bg-amber-50 px-3.5 py-2 text-[11px] font-medium text-amber-900 dark:border-amber-900/50 dark:bg-amber-950/40 dark:text-amber-200">
               🛡️ During an active interview, technical answers and reference solutions are disabled. Process help (timer, autosave, review, submit) remains available.
             </div>
           )}
@@ -200,7 +247,7 @@ function AIAssistantInner() {
           {/* Message Feed */}
           <div
             ref={scrollRef}
-            className="flex-1 space-y-3 overflow-y-auto bg-gray-50 p-3.5"
+            className="flex-1 space-y-3 overflow-y-auto bg-gray-50 p-3.5 dark:bg-slate-950"
           >
             {messages.map((msg, idx) => (
               <div
@@ -210,16 +257,20 @@ function AIAssistantInner() {
                 }`}
               >
                 <div
-                  className={`max-w-[86%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-xs leading-5 ${
+                  className={`max-w-[88%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-xs leading-5 ${
                     msg.role === "user"
-                      ? "rounded-br-sm bg-indigo-600 text-white"
-                      : "rounded-bl-sm border border-gray-200 bg-white text-gray-800 shadow-xs"
+                      ? "rounded-br-sm bg-indigo-600 text-white shadow-xs"
+                      : "rounded-bl-sm border border-gray-200 bg-white text-gray-800 shadow-xs dark:border-slate-800 dark:bg-slate-800 dark:text-slate-100"
                   }`}
                 >
-                  {msg.content}
+                  {msg.role === "user" ? (
+                    msg.content
+                  ) : (
+                    <FormattedMessage content={msg.content} />
+                  )}
                 </div>
                 {msg.timestamp && (
-                  <span className="mt-1 px-1 text-[10px] text-gray-400">
+                  <span className="mt-1 px-1 text-[10px] text-gray-400 dark:text-slate-500">
                     {formatMsgTime(msg.timestamp)}
                   </span>
                 )}
@@ -228,7 +279,8 @@ function AIAssistantInner() {
 
             {sending && (
               <div className="flex justify-start">
-                <div className="rounded-2xl border border-gray-200 bg-white px-3.5 py-2 text-xs text-gray-500">
+                <div className="flex items-center gap-2 rounded-2xl border border-gray-200 bg-white px-3.5 py-2 text-xs text-gray-500 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-400">
+                  <span className="inline-block h-2 w-2 animate-ping rounded-full bg-indigo-500" />
                   Thinking...
                 </div>
               </div>
@@ -237,7 +289,7 @@ function AIAssistantInner() {
             {error && (
               <div
                 role="alert"
-                className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-[11px] text-red-700"
+                className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-[11px] text-red-700 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300"
               >
                 {error}
               </div>
@@ -245,7 +297,7 @@ function AIAssistantInner() {
 
             {messages.length <= 2 && !sending && (
               <div className="pt-1">
-                <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+                <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-500">
                   Suggested questions
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -254,7 +306,7 @@ function AIAssistantInner() {
                       key={q}
                       type="button"
                       onClick={() => void sendQuestion(q)}
-                      className="rounded-full border border-indigo-200 bg-white px-2.5 py-1 text-[11px] font-medium text-indigo-700 transition hover:bg-indigo-50"
+                      className="rounded-full border border-indigo-200 bg-white px-2.5 py-1 text-[11px] font-medium text-indigo-700 transition hover:bg-indigo-50 dark:border-indigo-900/60 dark:bg-slate-800 dark:text-indigo-300 dark:hover:bg-slate-700"
                     >
                       {q}
                     </button>
@@ -270,7 +322,7 @@ function AIAssistantInner() {
               e.preventDefault();
               void sendQuestion(input);
             }}
-            className="flex items-center gap-2 border-t border-gray-200 bg-white p-2.5"
+            className="flex items-center gap-2 border-t border-gray-200 bg-white p-2.5 dark:border-slate-800 dark:bg-slate-900"
           >
             <input
               type="text"
@@ -279,16 +331,16 @@ function AIAssistantInner() {
               placeholder={
                 isInterviewPage
                   ? "Ask about timer, autosave, or submitting..."
-                  : "Ask about interviews, resumes, roadmaps..."
+                  : "Ask anything (e.g. 'What is Event Loop?', STAR method)..."
               }
               aria-label="Message AI Assistant"
               disabled={sending}
-              className="flex-1 rounded-full border border-gray-200 px-3.5 py-2 text-xs outline-none focus:border-indigo-500"
+              className="flex-1 rounded-full border border-gray-200 bg-gray-50 px-3.5 py-2 text-xs text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400 dark:focus:border-indigo-400 dark:focus:bg-slate-800"
             />
             <button
               type="submit"
               disabled={sending || !input.trim()}
-              className="rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+              className="rounded-full bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-indigo-700 disabled:opacity-50"
             >
               Send
             </button>

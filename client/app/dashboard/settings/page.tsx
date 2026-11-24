@@ -32,6 +32,7 @@ function SettingsWorkspace() {
             <button
               type="button"
               onClick={() => setTheme("light")}
+              suppressHydrationWarning
               className={`rounded-xl border px-5 py-3 text-xs font-bold transition ${
                 theme === "light"
                   ? "border-blue-500 bg-blue-50 text-blue-700"
@@ -44,6 +45,7 @@ function SettingsWorkspace() {
             <button
               type="button"
               onClick={() => setTheme("dark")}
+              suppressHydrationWarning
               className={`rounded-xl border px-5 py-3 text-xs font-bold transition ${
                 theme === "dark"
                   ? "border-indigo-500 bg-indigo-950 text-indigo-200"

@@ -1,0 +1,45 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/dashboard/layout,_N_T_/dashboard/resume/layout,_N_T_/dashboard/resume/builder/layout,_N_T_/dashboard/resume/builder/page,_N_T_/dashboard/resume/builder"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/dashboard/resume/builder/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 96,
+                "slots": {
+                  "children": {
+                    "hints": 160,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/dc07f2e73557c3f20244bb5522ae4b57d28b3b3cd913034e3171e1b6479d7299/$/dashboard/resume/builder",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/dashboard/resume/builder/page"
+    },
+    "isFallback": false
+  }
+}

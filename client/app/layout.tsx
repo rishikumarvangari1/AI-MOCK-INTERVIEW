@@ -415,6 +415,7 @@ export default function RootLayout({
       <body
         id="top"
         className="flex min-h-screen flex-col bg-white text-gray-900 antialiased"
+        suppressHydrationWarning
       >
         <StructuredData />
 

@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/interview/layout,_N_T_/interview/page,_N_T_/interview"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/interview/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/d04da310a8149f7fedc7b3f2f049fc1b9b4bc1101fd75bbbed66088fe69302c6/$/interview",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/interview/page"
+    },
+    "isFallback": false
+  }
+}

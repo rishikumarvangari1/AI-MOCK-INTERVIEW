@@ -15,24 +15,35 @@ function getConfig() {
   const port = Number(process.env.PORT || 5000);
   const nodeEnv = process.env.NODE_ENV || "development";
   const aiPrimaryProvider = (
-    process.env.AI_PROVIDER_PRIMARY || "anthropic"
+    process.env.AI_PROVIDER_PRIMARY || "gemini"
   )
     .trim()
     .toLowerCase();
+
+  const corsRaw = process.env.CORS_ORIGIN || process.env.CLIENT_URL || "http://localhost:3000,http://127.0.0.1:3000";
 
   return {
     port: Number.isFinite(port) && port > 0 ? port : 5000,
     nodeEnv,
     isProduction: nodeEnv === "production",
-    corsOrigins: parseCorsOrigins(process.env.CORS_ORIGIN),
+    corsOrigins: parseCorsOrigins(corsRaw),
+    clientUrl: process.env.CLIENT_URL || "http://localhost:3000",
     mongoUri: (process.env.MONGO_URI || "").trim(),
     jwtSecret: (process.env.JWT_SECRET || "").trim(),
     aiPrimaryProvider:
-      aiPrimaryProvider === "groq" ? "groq" : "anthropic",
+      aiPrimaryProvider === "groq"
+        ? "groq"
+        : aiPrimaryProvider === "openrouter"
+          ? "openrouter"
+          : "gemini",
+    geminiApiKey: (process.env.GEMINI_API_KEY || "").trim(),
+    geminiModel: (process.env.GEMINI_MODEL || "gemini-flash-lite-latest").trim(),
+    groqApiKey: (process.env.GROQ_API_KEY || "").trim(),
+    groqModel: (process.env.GROQ_MODEL || "openai/gpt-oss-20b").trim(),
+    openrouterApiKey: (process.env.OPENROUTER_API_KEY || "").trim(),
+    openrouterModel: (process.env.OPENROUTER_MODEL || "liquid/lfm-3-1.7b:free").trim(),
     anthropicApiKey: (process.env.ANTHROPIC_API_KEY || "").trim(),
     anthropicModel: (process.env.AI_MODEL || "claude-sonnet-4-6").trim(),
-    groqApiKey: (process.env.GROQ_API_KEY || "").trim(),
-    groqModel: (process.env.GROQ_MODEL || "llama-3.3-70b-versatile").trim(),
   };
 }
 
@@ -62,28 +73,23 @@ function validateConfig(options = {}) {
     errors.push("JWT_SECRET in server/.env still contains a placeholder value.");
   }
 
-  const hasAnthropic =
-    Boolean(config.anthropicApiKey) &&
-    !PLACEHOLDER_PATTERN.test(config.anthropicApiKey);
+  const hasGemini =
+    Boolean(config.geminiApiKey) &&
+    !PLACEHOLDER_PATTERN.test(config.geminiApiKey);
   const hasGroq =
     Boolean(config.groqApiKey) &&
     !PLACEHOLDER_PATTERN.test(config.groqApiKey);
+  const hasOpenRouter =
+    Boolean(config.openrouterApiKey) &&
+    !PLACEHOLDER_PATTERN.test(config.openrouterApiKey);
+  const hasAnthropic =
+    Boolean(config.anthropicApiKey) &&
+    !PLACEHOLDER_PATTERN.test(config.anthropicApiKey);
 
-  if (!hasAnthropic && !hasGroq) {
+  if (!hasGemini && !hasGroq && !hasOpenRouter && !hasAnthropic) {
     warnings.push(
-      "Neither ANTHROPIC_API_KEY nor GROQ_API_KEY is configured. AI-powered interview and resume analysis endpoints will fail until at least one provider key is set."
+      "No external AI API key (GEMINI_API_KEY, GROQ_API_KEY, or OPENROUTER_API_KEY) is configured. The system will use its built-in offline technical knowledge engine for interview Q&A."
     );
-  } else {
-    if (!hasAnthropic) {
-      warnings.push(
-        "ANTHROPIC_API_KEY is not configured; AI calls will fall back to Groq."
-      );
-    }
-    if (!hasGroq) {
-      warnings.push(
-        "GROQ_API_KEY is not configured; Groq fallback will be unavailable."
-      );
-    }
   }
 
   return {
@@ -92,8 +98,10 @@ function validateConfig(options = {}) {
     errors,
     warnings,
     providers: {
-      anthropic: hasAnthropic,
+      gemini: hasGemini,
       groq: hasGroq,
+      openrouter: hasOpenRouter,
+      anthropic: hasAnthropic,
       primary: config.aiPrimaryProvider,
     },
   };

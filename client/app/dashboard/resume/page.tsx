@@ -460,7 +460,7 @@ function ResumeAnalyzerWorkspace() {
                 type="button"
                 disabled={uploading}
                 onClick={() => fileInputRef.current?.click()}
-                className="rounded-full bg-white px-5 py-2.5 text-xs font-bold text-teal-800 shadow-md hover:bg-emerald-50 disabled:opacity-60"
+                className="rounded-full bg-white px-5 py-2.5 text-xs font-bold text-teal-800 shadow-md hover:bg-emerald-50 disabled:opacity-60 dark:bg-white dark:text-teal-900 dark:hover:bg-slate-100"
               >
                 {uploading ? "Processing file..." : "⬆ Upload Resume (PDF / DOCX / TXT)"}
               </button>

@@ -1,0 +1,25 @@
+2:"$Sreact.fragment"
+3:"/_next/static/chunks/1al4ltez1fvdh.js"
+4:"/_next/static/chunks/07gy520uuwn2q.js"
+5:I[28079,["$3","$4"],"ClientPageRoot"]
+6:"/_next/static/chunks/3oe0drz9p2l44.js"
+7:I[75517,["$3","$4","$6"],"default"]
+a:I[79101,["$3","$4"],"OutletBoundary"]
+b:"$Sreact.suspense"
+f:"ViewportBoundary"
+10:I[79101,["$3","$4"],"$f"]
+11:"MetadataBoundary"
+12:I[79101,["$3","$4"],"$11"]
+13:I[57304,["$3","$4"],"IconMark"]
+e:X
+1:[["children",{"s":"__PAGE__","h":128,"d":{"r":["$","$2","c",{"children":[["$","$L5",null,{"Component":"$7","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@8","$@9"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/3oe0drz9p2l44.js","async":true}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],"p":"$@d","v":null,"s":"$e"}}]]
+0:{"t":{"t":{"s":"","h":16,"c":"$Q1"},"h":{"r":["$","$2","h",{"children":[null,["$","$L10",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","2",{"name":"theme-color","content":"#2563eb"}],["$","meta","3",{"name":"color-scheme","content":"light"}]]}],["$","$L12",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$b",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"AI Mock Interview"}],["$","meta","1",{"name":"description","content":"AI-powered mock interview preparation platform. Practice real interview questions, analyse your resume and track your progress."}],["$","meta","2",{"name":"application-name","content":"AI Mock Interview"}],["$","meta","3",{"name":"author","content":"MockInterview AI"}],["$","meta","4",{"name":"keywords","content":"mock interview,AI interview,interview practice,resume analysis,career preparation,interview questions,javascript interview,react interview,system design interview"}],["$","meta","5",{"name":"creator","content":"MockInterview AI"}],["$","meta","6",{"name":"publisher","content":"MockInterview AI"}],["$","meta","7",{"name":"robots","content":"index, follow"}],["$","meta","8",{"name":"googlebot","content":"index, follow, max-image-preview:large, max-snippet:-1"}],["$","meta","9",{"name":"category","content":"education"}],["$","link","10",{"rel":"canonical","href":"http://localhost:3000"}],["$","meta","11",{"name":"format-detection","content":"telephone=no, address=no, email=no"}],["$","meta","12",{"property":"og:title","content":"AI Mock Interview"}],["$","meta","13",{"property":"og:description","content":"AI-powered mock interview preparation platform. Practice real interview questions, analyse your resume and track your progress."}],["$","meta","14",{"property":"og:url","content":"http://localhost:3000"}],["$","meta","15",{"property":"og:site_name","content":"AI Mock Interview"}],["$","meta","16",{"property":"og:locale","content":"en_US"}],["$","meta","17",{"property":"og:type","content":"website"}],["$","meta","18",{"name":"twitter:card","content":"summary"}],["$","meta","19",{"name":"twitter:title","content":"AI Mock Interview"}],["$","meta","20",{"name":"twitter:description","content":"AI-powered mock interview preparation platform. Practice real interview questions, analyse your resume and track your progress."}],["$","link","21",{"rel":"icon","href":"/favicon.ico?favicon.117ezoe8m31dk.ico","sizes":"48x48","type":"image/x-icon"}],["$","$L13","22",{}]]}]}],null]}],null]}],"p":"$@14","v":null,"s":"$e"}},"a":"$@15","u":"$@16","b":"0uZNjDoHfirvY6WB4AHtB"}
+8:{}
+9:"$1:0:1:d:r:props:children:0:props:serverProvidedParams:params"
+c:null
+16:true
+e:300
+e:C
+15:0
+14:"$undefined"
+d:"$undefined"

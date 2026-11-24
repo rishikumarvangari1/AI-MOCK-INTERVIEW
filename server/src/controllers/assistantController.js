@@ -9,6 +9,9 @@ const {
   askAI,
   sanitizePromptInput,
 } = require("../services/aiService");
+const {
+  resolveAssistantAnswer,
+} = require("../services/assistantKnowledge");
 const logger = require("../utils/logger");
 
 const PLATFORM_KNOWLEDGE = `
@@ -88,18 +91,8 @@ async function buildAuthorizedUserContext(userId) {
   }
 }
 
-function faqFallback(message) {
-  const lower = message.toLowerCase();
-  if (lower.includes("resume") || lower.includes("upload")) {
-    return "To analyze your resume, open Resume Analyzer at /dashboard/resume and upload a PDF, DOCX, or TXT file (up to 5 MB). You'll get an ATS quality score estimate, domain compatibility recommendations, Job Description keyword matching, and STAR bullet rewrites. (Note: Live AI assistant is temporarily unreachable; showing quick platform help.)";
-  }
-  if (lower.includes("interview") || lower.includes("question") || lower.includes("score")) {
-    return "Open AI Mock Interview at /dashboard/interview to pick from 20 career domains, choose Beginner/Intermediate/Advanced difficulty, and complete a 10-question interview. Answers are graded 0–10 across correctness, understanding, relevance, completeness, and clarity, with 70% as the default above-average threshold. Correct answers and explanations appear immediately after submission. (Note: Live AI assistant is temporarily unreachable; showing quick platform help.)";
-  }
-  if (lower.includes("roadmap") || lower.includes("skill")) {
-    return "Visit Skill Gap Analysis (/dashboard/skills) to view Strong, Intermediate, Beginner, Missing, and Recommended skills, and Learning Roadmap (/dashboard/roadmap) to generate and track a 7, 15, 30, 60, or 90-day preparation plan. (Note: Live AI assistant is temporarily unreachable; showing quick platform help.)";
-  }
-  return `I'm the AI Mock Interview & Career Intelligence assistant. You can practice 10-question interviews across ${DOMAINS.length} domains (/dashboard/interview), analyze your resume & find best-fit domains (/dashboard/resume), check skill gaps (/dashboard/skills), or follow a learning roadmap (/dashboard/roadmap). (Live AI provider is temporarily unavailable — please try again shortly.)`;
+function faqFallback(message, userContext = "") {
+  return resolveAssistantAnswer(message, userContext);
 }
 
 // POST /api/assistant/chat
@@ -123,7 +116,7 @@ exports.chatWithAssistant = async (req, res) => {
 
     // Section 15 Integrity Guardrail: detect active interview session and block answer-giving!
     let interviewActive = Boolean(body.interviewActive);
-    if (!interviewActive && user?.id && pageContext.includes("/interview")) {
+    if (!interviewActive && user?.id && pageContext.includes("/interview") && pageContext.includes("id=")) {
       try {
         const recent = await Interview.find({ userId: user.id }).sort({ createdAt: -1 }).limit(3);
         interviewActive = (recent || []).some((item) => item && item.isComplete === false);
@@ -190,7 +183,7 @@ exports.chatWithAssistant = async (req, res) => {
         requestId: req.requestId,
         code: aiErr instanceof AIError ? aiErr.code : "UNKNOWN",
       });
-      reply = faqFallback(cleanMessage);
+      reply = faqFallback(cleanMessage, userContext);
       source = "faq_fallback";
     }
 

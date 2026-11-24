@@ -1,0 +1,40 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/dashboard/layout,_N_T_/dashboard/skills/layout,_N_T_/dashboard/skills/page,_N_T_/dashboard/skills"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/dashboard/skills/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 160,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/e3e006d7b872643d53edb64d1a89f6155851fe3b09a7eb19f43db123cc04c453/$/dashboard/skills",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/dashboard/skills/page"
+    },
+    "isFallback": false
+  }
+}

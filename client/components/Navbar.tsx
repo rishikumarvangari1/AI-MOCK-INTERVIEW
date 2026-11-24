@@ -96,8 +96,8 @@ function Brand({ href }: { href: string }) {
       </div>
 
       <div className="leading-tight">
-        <p className="text-sm font-bold text-blue-700">MockInterview</p>
-        <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500">
+        <p className="text-sm font-bold text-blue-700 dark:text-blue-400">MockInterview</p>
+        <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 dark:text-slate-400">
           AI Powered
         </p>
       </div>
@@ -118,11 +118,11 @@ function NavLink({ item, active, onClick, variant }: NavLinkProps) {
   const state =
     variant === "desktop"
       ? active
-        ? "bg-blue-100 text-blue-700"
-        : "text-gray-600 hover:bg-gray-100"
+        ? "bg-blue-100 text-blue-700 dark:bg-blue-900/60 dark:text-blue-200"
+        : "text-gray-600 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
       : active
-        ? "bg-blue-50 text-blue-700"
-        : "text-gray-700 hover:bg-gray-50";
+        ? "bg-blue-50 text-blue-700 dark:bg-blue-900/60 dark:text-blue-200"
+        : "text-gray-700 hover:bg-gray-50 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white";
 
   return (
     <Link
@@ -194,25 +194,25 @@ function NotificationBell() {
         onClick={() => setOpen((v) => !v)}
         aria-label="Notifications"
         aria-expanded={open}
-        className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gray-50 text-sm transition hover:bg-gray-100"
+        className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gray-50 text-sm text-gray-700 transition hover:bg-gray-100 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
       >
         🔔
         {unread > 0 && (
-          <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">
+          <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white shadow-sm">
             {unread}
           </span>
         )}
       </button>
 
       {open && (
-        <div className="absolute right-0 top-12 z-40 w-80 rounded-2xl border border-gray-200 bg-white p-3 shadow-xl">
-          <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-            <p className="text-xs font-bold text-gray-900">Notifications</p>
+        <div className="absolute right-0 top-12 z-40 w-80 rounded-2xl border border-gray-200 bg-white p-3 shadow-xl dark:border-slate-800 dark:bg-slate-900">
+          <div className="flex items-center justify-between border-b border-gray-100 pb-2 dark:border-slate-800">
+            <p className="text-xs font-bold text-gray-900 dark:text-white">Notifications</p>
             {unread > 0 && (
               <button
                 type="button"
                 onClick={() => void handleMarkAllRead()}
-                className="text-[11px] font-semibold text-blue-600 hover:underline"
+                className="text-[11px] font-semibold text-blue-600 hover:underline dark:text-blue-400"
               >
                 Mark all read
               </button>
@@ -220,7 +220,7 @@ function NotificationBell() {
           </div>
           <div className="mt-2 max-h-64 space-y-2 overflow-y-auto">
             {items.length === 0 ? (
-              <p className="py-4 text-center text-xs text-gray-400">
+              <p className="py-4 text-center text-xs text-gray-400 dark:text-slate-500">
                 No notifications yet.
               </p>
             ) : (
@@ -229,12 +229,12 @@ function NotificationBell() {
                   key={item._id}
                   href={item.actionUrl || "/dashboard"}
                   onClick={() => setOpen(false)}
-                  className={`block rounded-xl p-2.5 text-xs transition hover:bg-gray-50 ${
-                    item.read ? "bg-white" : "bg-blue-50/60"
+                  className={`block rounded-xl p-2.5 text-xs transition hover:bg-gray-50 dark:hover:bg-slate-800 ${
+                    item.read ? "bg-white dark:bg-slate-900" : "bg-blue-50/60 dark:bg-blue-950/40"
                   }`}
                 >
-                  <p className="font-semibold text-gray-900">{item.title}</p>
-                  <p className="mt-0.5 text-[11px] leading-4 text-gray-600">
+                  <p className="font-semibold text-gray-900 dark:text-slate-100">{item.title}</p>
+                  <p className="mt-0.5 text-[11px] leading-4 text-gray-600 dark:text-slate-400">
                     {item.message}
                   </p>
                 </Link>
@@ -299,16 +299,16 @@ function ProfileDropdown({
         onClick={() => setOpen((value) => !value)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="flex items-center gap-2 rounded-full bg-gray-50 py-1 pl-1 pr-3 transition hover:bg-gray-100"
+        className="flex items-center gap-2 rounded-full bg-gray-50 py-1 pl-1 pr-3 transition hover:bg-gray-100 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
       >
         <Avatar name={firstName} />
 
-        <p className="text-xs text-gray-600">
-          Hi, <span className="font-bold text-gray-900">{firstName}</span>
+        <p className="text-xs text-gray-600 dark:text-slate-300">
+          Hi, <span className="font-bold text-gray-900 dark:text-white">{firstName}</span>
         </p>
 
         <span
-          className={`text-[9px] text-gray-400 transition ${
+          className={`text-[9px] text-gray-400 dark:text-slate-400 transition ${
             open ? "rotate-180" : ""
           }`}
         >
@@ -319,19 +319,19 @@ function ProfileDropdown({
       {open && (
         <div
           role="menu"
-          className="absolute right-0 top-12 w-60 rounded-xl border border-gray-200 bg-white p-2 shadow-lg"
+          className="absolute right-0 top-12 w-60 rounded-xl border border-gray-200 bg-white p-2 shadow-lg dark:border-slate-800 dark:bg-slate-900"
         >
           <div className="px-3 py-3">
-            <p className="text-sm font-semibold text-gray-900">
+            <p className="text-sm font-semibold text-gray-900 dark:text-white">
               {firstName}
             </p>
 
-            <p className="mt-1 truncate text-xs text-gray-500">
+            <p className="mt-1 truncate text-xs text-gray-500 dark:text-slate-400">
               {email || "No email available"}
             </p>
           </div>
 
-          <div className="my-1 border-t border-gray-100" />
+          <div className="my-1 border-t border-gray-100 dark:border-slate-800" />
 
           {profileMenuItems.map((item) => (
             <Link
@@ -339,7 +339,7 @@ function ProfileDropdown({
               href={item.href}
               role="menuitem"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-xs text-gray-700 transition hover:bg-gray-50"
+              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-xs text-gray-700 transition hover:bg-gray-50 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
             >
               <span>{item.icon}</span>
               {item.label}
@@ -351,14 +351,14 @@ function ProfileDropdown({
               href="/admin"
               role="menuitem"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-xs font-semibold text-red-700 transition hover:bg-red-50"
+              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-xs font-semibold text-red-700 transition hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40"
             >
               <span>🛡️</span>
               Admin Console
             </Link>
           )}
 
-          <div className="my-1 border-t border-gray-100" />
+          <div className="my-1 border-t border-gray-100 dark:border-slate-800" />
 
           <button
             role="menuitem"
@@ -366,7 +366,7 @@ function ProfileDropdown({
               setOpen(false);
               logout();
             }}
-            className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-left text-xs text-red-600 transition hover:bg-red-50"
+            className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-left text-xs text-red-600 transition hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40"
           >
             <span>🚪</span>
             Logout
@@ -395,7 +395,7 @@ function MobileMenu({
   close: () => void;
 }) {
   return (
-    <div className="border-t border-gray-100 bg-white px-6 py-4 md:hidden">
+    <div className="border-t border-gray-100 bg-white px-6 py-4 dark:border-slate-800 dark:bg-slate-900 md:hidden">
       <nav className="flex flex-col gap-1">
         {navItems.map((item) => (
           <NavLink
@@ -407,17 +407,17 @@ function MobileMenu({
           />
         ))}
 
-        <div className="my-2 border-t border-gray-100" />
+        <div className="my-2 border-t border-gray-100 dark:border-slate-800" />
 
         <div className="flex items-center gap-3 px-4 py-2">
           <Avatar name={firstName} size="md" />
 
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-gray-900">
+            <p className="text-sm font-semibold text-gray-900 dark:text-white">
               {firstName}
             </p>
 
-            <p className="truncate text-xs text-gray-500">
+            <p className="truncate text-xs text-gray-500 dark:text-slate-400">
               {email || "No email available"}
             </p>
           </div>
@@ -426,7 +426,7 @@ function MobileMenu({
         <Link
           href="/dashboard/profile"
           onClick={close}
-          className="rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+          className="rounded-lg px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 dark:text-slate-200 dark:hover:bg-slate-800"
         >
           👤 My Profile
         </Link>
@@ -436,7 +436,7 @@ function MobileMenu({
             close();
             logout();
           }}
-          className="rounded-lg px-4 py-3 text-left text-sm text-red-600 hover:bg-red-50"
+          className="rounded-lg px-4 py-3 text-left text-sm text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40"
         >
           🚪 Logout
         </button>
@@ -455,7 +455,7 @@ export default function Navbar() {
 
   const pathname = usePathname();
   const { user, isLoggedIn, logout } = useAuth();
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, mounted } = useTheme();
 
   const firstName = getFirstName(user?.name);
 
@@ -473,8 +473,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-30 border-b bg-white transition-shadow ${
-        scrolled ? "border-gray-200 shadow-sm" : "border-gray-100"
+      className={`sticky top-0 z-30 border-b bg-white transition-all dark:bg-slate-900/95 ${
+        scrolled ? "border-gray-200 shadow-sm dark:border-slate-800" : "border-gray-100 dark:border-slate-800"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -502,11 +502,14 @@ export default function Navbar() {
           <button
             type="button"
             onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-            title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-50 text-sm transition hover:bg-gray-100"
+            aria-label={mounted ? `Switch to ${theme === "dark" ? "light" : "dark"} theme` : "Switch to dark theme"}
+            title={mounted ? `Switch to ${theme === "dark" ? "light" : "dark"} theme` : "Switch to dark theme"}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-50 text-sm transition hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700"
+            suppressHydrationWarning
           >
-            {theme === "dark" ? "☀️" : "🌙"}
+            <span suppressHydrationWarning>
+              {mounted ? (theme === "dark" ? "☀️" : "🌙") : "🌙"}
+            </span>
           </button>
 
           {isLoggedIn ? (
@@ -522,7 +525,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => setMenuOpen((value) => !value)}
-                className="rounded-lg border border-gray-200 px-3 py-2 text-gray-700 md:hidden"
+                className="rounded-lg border border-gray-200 px-3 py-2 text-gray-700 transition hover:bg-gray-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800 md:hidden"
                 aria-label="Toggle navigation"
                 aria-expanded={menuOpen}
               >
@@ -533,14 +536,14 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="rounded-full px-4 py-2 text-xs font-medium text-gray-700 transition hover:bg-gray-100"
+                className="rounded-full px-4 py-2 text-xs font-medium text-gray-700 transition hover:bg-gray-100 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 Login
               </Link>
 
               <Link
                 href="/register"
-                className="rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-700"
+                className="rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-700 shadow-sm dark:bg-blue-600 dark:hover:bg-blue-500"
               >
                 Sign up
               </Link>

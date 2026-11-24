@@ -1,0 +1,3 @@
+module.exports=[86706,a=>{"use strict";let b=(0,a.i(70225).registerClientReference)(function(){throw Error("Attempted to call the default export of [project]/client/app/dashboard/layout.tsx from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.")},"[project]/client/app/dashboard/layout.tsx","default");a.s(["default",0,b])},18491,a=>{"use strict";var b=a.i(86706);a.n(b)},59359,function(a){a.n(a.i(18491))}];
+
+//# sourceMappingURL=client_app_dashboard_layout_tsx_049e_qg5-i2tx._.js.map

@@ -192,7 +192,7 @@ function DashboardContent() {
                 <button
                   type="button"
                   onClick={() => setPickerOpen(true)}
-                  className="rounded-full bg-white px-6 py-3 text-xs font-bold text-blue-700 shadow-md transition hover:bg-blue-50"
+                  className="rounded-full bg-white px-6 py-3 text-xs font-bold text-blue-700 shadow-md transition hover:bg-blue-50 dark:bg-white dark:text-blue-700 dark:hover:bg-slate-100"
                 >
                   Start Mock Interview →
                 </button>
@@ -316,7 +316,7 @@ function DashboardContent() {
             <button
               type="button"
               onClick={() => setPickerOpen(true)}
-              className="text-xs font-semibold text-blue-600 hover:text-blue-700"
+              className="text-xs font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
             >
               View all {DOMAINS.length} domains →
             </button>
@@ -327,10 +327,10 @@ function DashboardContent() {
               <Link
                 key={domain.id}
                 href={`/dashboard/interview?domain=${domain.id}`}
-                className="flex flex-col items-center rounded-2xl border border-gray-200 bg-white p-4 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
+                className="flex flex-col items-center rounded-2xl border border-gray-200 bg-white p-4 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-500/50"
               >
                 <span className="text-2xl">{domain.icon}</span>
-                <span className="mt-2 text-xs font-semibold text-gray-800">
+                <span className="mt-2 text-xs font-semibold text-gray-800 dark:text-slate-200">
                   {domain.title}
                 </span>
               </Link>
@@ -341,8 +341,8 @@ function DashboardContent() {
         {/* Main 2-Column Workspace */}
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {/* Left 2 cols: Recent Sessions + Resume Snapshot */}
-          <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-2">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 pb-4">
+          <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm lg:col-span-2 dark:border-slate-800 dark:bg-slate-900">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 pb-4 dark:border-slate-800">
               <div className="flex gap-2">
                 <button
                   type="button"
@@ -350,7 +350,7 @@ function DashboardContent() {
                   className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
                     activeTab === "history"
                       ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   }`}
                 >
                   📋 Recent Interviews
@@ -361,7 +361,7 @@ function DashboardContent() {
                   className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
                     activeTab === "resume"
                       ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   }`}
                 >
                   📄 Resume Analyzer
@@ -374,7 +374,7 @@ function DashboardContent() {
                     ? "/dashboard/history"
                     : "/dashboard/resume"
                 }
-                className="text-xs font-semibold text-blue-600 hover:text-blue-700"
+                className="text-xs font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               >
                 {activeTab === "history" ? "View all sessions →" : "Open analyzer →"}
               </Link>

@@ -877,7 +877,7 @@ function InterviewSessionInner() {
                   onChange={(e) => setDomainSearch(e.target.value)}
                   placeholder="Search domains (e.g. Python, Cloud, SQL)..."
                   aria-label="Search career domains"
-                  className="w-full rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs outline-none focus:border-indigo-500 focus:bg-white sm:w-64"
+                  className="w-full rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400 dark:focus:bg-slate-800 sm:w-64"
                 />
               </div>
               <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
@@ -886,18 +886,18 @@ function InterviewSessionInner() {
                     key={domain.id}
                     type="button"
                     onClick={() => setSelectedDomain(domain.id)}
-                    className={`flex items-start gap-3 rounded-xl border p-3.5 text-left transition ${
+                    className={`flex items-start gap-3 rounded-2xl border p-3.5 text-left transition-all duration-200 ${
                       selectedDomain === domain.id
-                        ? "border-indigo-500 bg-indigo-50 ring-2 ring-indigo-100"
-                        : "border-gray-200 bg-white hover:border-gray-300"
+                        ? "border-indigo-500 bg-indigo-50/80 ring-2 ring-indigo-200 dark:border-indigo-500 dark:bg-indigo-950/60 dark:ring-indigo-900/50"
+                        : "border-gray-200 bg-white hover:border-gray-300 dark:border-slate-800 dark:bg-slate-800/80 dark:hover:border-slate-700 dark:hover:bg-slate-800"
                     }`}
                   >
                     <span className="text-xl">{domain.icon}</span>
                     <span className="min-w-0">
-                      <span className="block text-xs font-bold text-gray-900">
+                      <span className="block text-xs font-bold text-gray-900 dark:text-slate-100">
                         {domain.title}
                       </span>
-                      <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">
+                      <span className="mt-0.5 block text-[11px] leading-4 text-gray-500 dark:text-slate-400">
                         {domain.description}
                       </span>
                     </span>
@@ -906,18 +906,18 @@ function InterviewSessionInner() {
                 <button
                   type="button"
                   onClick={() => setSelectedDomain("custom")}
-                  className={`flex items-start gap-3 rounded-xl border border-dashed p-3.5 text-left transition ${
+                  className={`flex items-start gap-3 rounded-2xl border border-dashed p-3.5 text-left transition-all duration-200 ${
                     selectedDomain === "custom"
-                      ? "border-indigo-500 bg-indigo-50 ring-2 ring-indigo-100"
-                      : "border-gray-300 bg-white hover:border-gray-400"
+                      ? "border-indigo-500 bg-indigo-50/80 ring-2 ring-indigo-200 dark:border-indigo-500 dark:bg-indigo-950/60 dark:ring-indigo-900/50"
+                      : "border-gray-300 bg-white hover:border-gray-400 dark:border-slate-700 dark:bg-slate-800/80 dark:hover:border-slate-600 dark:hover:bg-slate-800"
                   }`}
                 >
                   <span className="text-xl">✨</span>
                   <span className="min-w-0">
-                    <span className="block text-xs font-bold text-gray-900">
+                    <span className="block text-xs font-bold text-gray-900 dark:text-slate-100">
                       Custom Role / Domain
                     </span>
-                    <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">
+                    <span className="mt-0.5 block text-[11px] leading-4 text-gray-500 dark:text-slate-400">
                       Type any specialized engineering role or stack
                     </span>
                   </span>
@@ -929,7 +929,7 @@ function InterviewSessionInner() {
               <div>
                 <label
                   htmlFor="custom-domain"
-                  className="block text-xs font-bold text-gray-700"
+                  className="block text-xs font-bold text-gray-700 dark:text-slate-300"
                 >
                   Custom Role / Domain Name
                 </label>
@@ -939,7 +939,7 @@ function InterviewSessionInner() {
                   value={customDomainName}
                   onChange={(e) => setCustomDomainName(e.target.value)}
                   placeholder="e.g. Embedded Rust Engineer, Site Reliability Engineer"
-                  className="mt-1.5 w-full rounded-xl border border-gray-200 px-3.5 py-2.5 text-sm"
+                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400 dark:focus:ring-indigo-900/40"
                 />
               </div>
             )}
@@ -948,7 +948,7 @@ function InterviewSessionInner() {
               <div>
                 <label
                   htmlFor="int-type"
-                  className="block text-xs font-bold text-gray-700"
+                  className="block text-xs font-bold text-gray-700 dark:text-slate-300"
                 >
                   2. Interview Format
                 </label>
@@ -956,7 +956,7 @@ function InterviewSessionInner() {
                   id="int-type"
                   value={interviewType}
                   onChange={(e) => setInterviewType(e.target.value as InterviewType)}
-                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium"
+                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium text-gray-900 outline-none transition focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 >
                   <option value="technical">Technical (10 Questions)</option>
                   <option value="coding">Coding Challenge (Code Editor)</option>
@@ -969,7 +969,7 @@ function InterviewSessionInner() {
               <div>
                 <label
                   htmlFor="int-exp"
-                  className="block text-xs font-bold text-gray-700"
+                  className="block text-xs font-bold text-gray-700 dark:text-slate-300"
                 >
                   3. Experience Level
                 </label>
@@ -979,7 +979,7 @@ function InterviewSessionInner() {
                   onChange={(e) =>
                     setExperienceLevel(e.target.value as ExperienceLevel)
                   }
-                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium"
+                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium text-gray-900 outline-none transition focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 >
                   <option value="beginner">Fresher / Beginner</option>
                   <option value="intermediate">Intermediate</option>
@@ -990,7 +990,7 @@ function InterviewSessionInner() {
               <div>
                 <label
                   htmlFor="int-diff"
-                  className="block text-xs font-bold text-gray-700"
+                  className="block text-xs font-bold text-gray-700 dark:text-slate-300"
                 >
                   4. Difficulty Curve
                 </label>
@@ -998,7 +998,7 @@ function InterviewSessionInner() {
                   id="int-diff"
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value as Difficulty)}
-                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium"
+                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium text-gray-900 outline-none transition focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 >
                   <option value="mixed">Progressive (Q1-3 Basic → Q9-10 Scenario)</option>
                   <option value="easy">Easy</option>
@@ -1010,7 +1010,7 @@ function InterviewSessionInner() {
               <div>
                 <label
                   htmlFor="int-timer"
-                  className="block text-xs font-bold text-gray-700"
+                  className="block text-xs font-bold text-gray-700 dark:text-slate-300"
                 >
                   5. Countdown Timer
                 </label>
@@ -1018,7 +1018,7 @@ function InterviewSessionInner() {
                   id="int-timer"
                   value={timeLimitMinutes}
                   onChange={(e) => setTimeLimitMinutes(Number(e.target.value))}
-                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium"
+                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium text-gray-900 outline-none transition focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 >
                   <option value={20}>20 Minutes (Fast-Paced)</option>
                   <option value={30}>30 Minutes (Standard 10Q)</option>
@@ -1032,7 +1032,7 @@ function InterviewSessionInner() {
                 <div>
                   <label
                     htmlFor="int-lang"
-                    className="block text-xs font-bold text-gray-700"
+                    className="block text-xs font-bold text-gray-700 dark:text-slate-300"
                   >
                     Coding Language
                   </label>
@@ -1040,7 +1040,7 @@ function InterviewSessionInner() {
                     id="int-lang"
                     value={codingLanguage}
                     onChange={(e) => setCodingLanguage(e.target.value)}
-                    className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium"
+                    className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs font-medium text-gray-900 outline-none transition focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                   >
                     <option value="javascript">JavaScript</option>
                     <option value="typescript">TypeScript</option>
@@ -1055,7 +1055,7 @@ function InterviewSessionInner() {
               <div className={interviewType === "coding" ? "" : "sm:col-span-2"}>
                 <label
                   htmlFor="int-jd"
-                  className="block text-xs font-bold text-gray-700"
+                  className="block text-xs font-bold text-gray-700 dark:text-slate-300"
                 >
                   Optional Job Description Context
                 </label>
@@ -1065,7 +1065,7 @@ function InterviewSessionInner() {
                   value={jobDescription}
                   onChange={(e) => setJobDescription(e.target.value)}
                   placeholder="Optional: paste key requirements to tailor your 10 questions"
-                  className="mt-1.5 w-full rounded-xl border border-gray-200 px-3.5 py-2.5 text-xs"
+                  className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-xs text-gray-900 outline-none transition focus:border-indigo-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400"
                 />
               </div>
             </div>
@@ -1442,18 +1442,18 @@ function InterviewSessionInner() {
                     <button
                       type="button"
                       onClick={() => readQuestionAloud(currentQuestion.text)}
-                      className="rounded-full border border-gray-200 px-3 py-1 text-[11px] font-semibold text-gray-600 hover:bg-gray-50"
+                      className="rounded-full border border-gray-200 px-3 py-1 text-[11px] font-semibold text-gray-600 hover:bg-gray-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
                     >
                       {speaking ? "⏹ Stop Reading" : "🔊 Read Aloud"}
                     </button>
                   </div>
 
-                  <h2 className="mt-4 text-base font-bold leading-7 text-gray-900 sm:text-lg">
+                  <h2 className="mt-4 text-base font-bold leading-7 text-gray-900 dark:text-white sm:text-lg">
                     {currentQuestion.text}
                   </h2>
 
                   {currentQuestion.sampleInput && (
-                    <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3.5 font-mono text-xs text-slate-800">
+                    <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3.5 font-mono text-xs text-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200">
                       <p>
                         <strong>Sample Input:</strong> {currentQuestion.sampleInput}
                       </p>
@@ -1469,11 +1469,11 @@ function InterviewSessionInner() {
               )}
 
               {/* Answer Editor */}
-              <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+              <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <label
                     htmlFor="answer-editor"
-                    className="text-xs font-bold uppercase tracking-wider text-gray-600"
+                    className="text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-slate-400"
                   >
                     Your Answer (Question {currentIdx + 1})
                   </label>
@@ -1484,8 +1484,8 @@ function InterviewSessionInner() {
                         onClick={toggleVoiceDictation}
                         className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${
                           listening
-                            ? "bg-red-100 text-red-700"
-                            : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                            ? "bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-300"
+                            : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                         }`}
                       >
                         {listening ? "⏹ Stop Voice" : "🎙️ Dictate Answer"}
@@ -1497,7 +1497,7 @@ function InterviewSessionInner() {
                         type="button"
                         disabled={!currentAnswer}
                         onClick={() => setConfirmClear(true)}
-                        className="rounded-full border border-gray-200 px-3 py-1 text-[11px] font-semibold text-gray-600 hover:bg-gray-50 disabled:opacity-40"
+                        className="rounded-full border border-gray-200 px-3 py-1 text-[11px] font-semibold text-gray-600 hover:bg-gray-50 disabled:opacity-40 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
                       >
                         Clear Answer
                       </button>
@@ -1552,10 +1552,10 @@ function InterviewSessionInner() {
                       ? `Write your ${interview.codingLanguage || "code"} solution and explain time/space complexity...`
                       : "Write a clear, structured explanation covering core concepts, trade-offs, and a practical example..."
                   }
-                  className={`mt-3 w-full rounded-2xl border border-gray-200 p-4 text-sm leading-6 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 ${
+                  className={`mt-3 w-full rounded-2xl border border-gray-200 p-4 text-sm leading-6 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:focus:ring-indigo-900/40 ${
                     interview.interviewType === "coding"
                       ? "bg-slate-950 font-mono text-emerald-300"
-                      : "bg-white text-gray-900"
+                      : "bg-white text-gray-900 dark:bg-slate-950 dark:text-slate-100 dark:placeholder-slate-500"
                   }`}
                 />
 
@@ -1586,7 +1586,7 @@ function InterviewSessionInner() {
                       type="button"
                       disabled={currentIdx === 0}
                       onClick={() => void jumpToQuestion(currentIdx - 1)}
-                      className="rounded-full border border-gray-300 bg-white px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40"
+                      className="rounded-full border border-gray-300 bg-white px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                     >
                       ← Previous
                     </button>
@@ -1594,7 +1594,7 @@ function InterviewSessionInner() {
                     <button
                       type="button"
                       onClick={() => void persistAnswer(currentIdx, currentAnswer)}
-                      className="rounded-full border border-indigo-200 bg-indigo-50 px-4 py-2 text-xs font-semibold text-indigo-700 hover:bg-indigo-100"
+                      className="rounded-full border border-indigo-200 bg-indigo-50 px-4 py-2 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 dark:border-indigo-900/60 dark:bg-indigo-950/50 dark:text-indigo-300 dark:hover:bg-indigo-900/60"
                     >
                       Save Answer
                     </button>
@@ -1605,7 +1605,7 @@ function InterviewSessionInner() {
                       <button
                         type="button"
                         onClick={() => void jumpToQuestion(currentIdx + 1)}
-                        className="rounded-full bg-indigo-600 px-5 py-2 text-xs font-bold text-white hover:bg-indigo-700"
+                        className="rounded-full bg-indigo-600 px-5 py-2 text-xs font-bold text-white hover:bg-indigo-700 shadow-sm"
                       >
                         Next Question →
                       </button>
@@ -1617,7 +1617,7 @@ function InterviewSessionInner() {
                         void persistAnswer(currentIdx, currentAnswer);
                         setPhase("review");
                       }}
-                      className="rounded-full bg-gray-900 px-5 py-2 text-xs font-bold text-white hover:bg-gray-800"
+                      className="rounded-full bg-gray-900 px-5 py-2 text-xs font-bold text-white hover:bg-gray-800 shadow-sm dark:bg-indigo-600 dark:hover:bg-indigo-500"
                     >
                       Review &amp; Submit ({answeredCount}/{totalQuestions})
                     </button>
@@ -1629,11 +1629,11 @@ function InterviewSessionInner() {
             {/* SECTION 16 SIDEBAR: NAVIGATION, STATUS & INTEGRITY */}
             <aside className="space-y-4 lg:col-span-4">
               {/* Question Navigator */}
-              <div className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+              <div className="rounded-3xl border border-gray-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">
                   Question Navigation
                 </h3>
-                <p className="mt-1 text-xs text-gray-600">
+                <p className="mt-1 text-xs text-gray-600 dark:text-slate-300">
                   Answered: <strong>{answeredCount}</strong> / {totalQuestions}
                 </p>
 
@@ -1650,8 +1650,8 @@ function InterviewSessionInner() {
                           isCurrent
                             ? "border-indigo-600 bg-indigo-600 text-white shadow-sm"
                             : hasAns
-                              ? "border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100"
-                              : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                              ? "border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-300"
+                              : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                         }`}
                         title={`Q${idx + 1}: ${q.topic} (${hasAns ? "Answered" : "Unanswered"})`}
                       >
@@ -1743,7 +1743,7 @@ function InterviewSessionInner() {
                 <button
                   type="button"
                   onClick={() => void toggleCamera()}
-                  className="mt-2.5 w-full rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100"
+                  className="mt-2.5 w-full rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                 >
                   {cameraEnabled ? "Turn Off Camera" : "📷 Start Local Self-View"}
                 </button>
